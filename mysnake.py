@@ -107,12 +107,22 @@ def draw_snake(SNAKE) :
         pg.draw.rect(screen, color_rouge, rect)   
     pg.display.flip() 
 
-running = True
-while running:
-    draw_board()                   
-    draw_snake(SNAKE)     #on appelle la fonction créée
-    for event in pg.event.get():
-        if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_q):
-            running = False
-pg.quit()
+# running = True
+# while running:
+#     draw_board()                   
+#     draw_snake(SNAKE)     #on appelle la fonction créée
+#     for event in pg.event.get():
+#         if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_q):
+#             running = False
+# pg.quit()
+
+
+### 3.2 Déplacer le serpent
+
+def move_snake(SNAKE, direction):
+    head_x, head_y = SNAKE[-1]
+    dx, dy = direction
+    SNAKE.pop(0)                                 #retire la queue
+    SNAKE.append((head_x + dx, head_y + dy))    #ajoute la nouvelle tête
+    return SNAKE
 
