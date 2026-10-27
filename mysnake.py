@@ -81,9 +81,36 @@ def draw_board():
                 pg.draw.rect(screen, color_blanc, rect)   
     pg.display.flip()          
 
+# running = True
+# while running:
+#     draw_board()                        #on appelle la fonction créée
+#     for event in pg.event.get():
+#         if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_q):
+#             running = False
+# pg.quit()
+
+
+### 3.1 Dessiner le serpent
+SNAKE = [
+   (10, 15),
+   (11, 15),
+   (12, 15),
+]
+
+
+def draw_snake(SNAKE) : 
+    color_rouge = (255, 0, 0)
+    width, height = 20, 20
+    for l in SNAKE : 
+        (x,y)=l
+        rect = pg.Rect(20*x, 20*y, width, height)
+        pg.draw.rect(screen, color_rouge, rect)   
+    pg.display.flip() 
+
 running = True
 while running:
-    draw_board()                        #on appelle la fonction créée
+    draw_board()                   
+    draw_snake(SNAKE)     #on appelle la fonction créée
     for event in pg.event.get():
         if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_q):
             running = False
