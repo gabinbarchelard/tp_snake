@@ -131,28 +131,51 @@ def move_snake(SNAKE, direction):
 
 direction = (1, 0)
 
+# running = True
+# while running:
+#     clock.tick(2)
+
+#     for event in pg.event.get():
+#         if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_q):     #on garde les 2 manières de quitter
+#             running = False
+#         elif event.type == pg.KEYDOWN:
+#             if event.key == pg.K_UP and direction != (0, 1):            #on doit l'empêcher d'aller à l'envers pour ne pas qu'il se rentre dedans
+#                 direction = (0, -1)
+#             elif event.key == pg.K_DOWN and direction != (0, -1):           #idem...
+#                 direction = (0, 1)
+#             elif event.key == pg.K_LEFT and direction != (1, 0):
+#                 direction = (-1, 0)
+#             elif event.key == pg.K_RIGHT and direction != (-1, 0):
+#                 direction = (1, 0)
+
+#     move_snake(SNAKE, direction)
+
+#     screen.fill((0, 0, 0))   # noir
+#     draw_board()
+#     draw_snake(SNAKE) 
+#     pg.display.update()
+
+# pg.quit()
+
+
+### 5.1 Dessiner le fruit
+
+FRUIT = (randint(0, 29), randint(0, 29))
+
+def draw_fruit(FRUIT) : 
+    color_vert = (0, 255, 0)
+    x,y=FRUIT
+    pg.draw.rect(screen, color_vert, pg.Rect(20*x, 20*y, 1, 1))
+    pg.display.flip() 
+
+
+
 running = True
 while running:
-    clock.tick(2)
-
+    draw_board()                   
+    draw_fruit(FRUIT)   #on appelle la fonction créée
     for event in pg.event.get():
-        if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_q):     #on garde les 2 manières de quitter
+        if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_q):
             running = False
-        elif event.type == pg.KEYDOWN:
-            if event.key == pg.K_UP and direction != (0, 1):            #on doit l'empêcher d'aller à l'envers pour ne pas qu'il se rentre dedans
-                direction = (0, -1)
-            elif event.key == pg.K_DOWN and direction != (0, -1):           #idem...
-                direction = (0, 1)
-            elif event.key == pg.K_LEFT and direction != (1, 0):
-                direction = (-1, 0)
-            elif event.key == pg.K_RIGHT and direction != (-1, 0):
-                direction = (1, 0)
-
-    move_snake(SNAKE, direction)
-
-    screen.fill((0, 0, 0))   # noir
-    draw_board()
-    draw_snake(SNAKE)
-    pg.display.update()
-
 pg.quit()
+
