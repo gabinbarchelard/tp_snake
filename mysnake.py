@@ -126,3 +126,33 @@ def move_snake(SNAKE, direction):
     SNAKE.append((head_x + dx, head_y + dy))    #ajoute la nouvelle tête
     return SNAKE
 
+### 3.3. Intégrer le déplacement
+### 4. Contrôler le déplacement
+
+direction = (1, 0)
+
+running = True
+while running:
+    clock.tick(2)
+
+    for event in pg.event.get():
+        if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_q):     #on garde les 2 manières de quitter
+            running = False
+        elif event.type == pg.KEYDOWN:
+            if event.key == pg.K_UP and direction != (0, 1):            #on doit l'empêcher d'aller à l'envers pour ne pas qu'il se rentre dedans
+                direction = (0, -1)
+            elif event.key == pg.K_DOWN and direction != (0, -1):           #idem...
+                direction = (0, 1)
+            elif event.key == pg.K_LEFT and direction != (1, 0):
+                direction = (-1, 0)
+            elif event.key == pg.K_RIGHT and direction != (-1, 0):
+                direction = (1, 0)
+
+    move_snake(SNAKE, direction)
+
+    screen.fill((0, 0, 0))   # noir
+    draw_board()
+    draw_snake(SNAKE)
+    pg.display.update()
+
+pg.quit()
